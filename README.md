@@ -13,11 +13,11 @@ Perform some reconnaissance on their online presence and find a flag you can sub
 
 ## Solve
 
-The challenge presents a message related to the [INE].(https://checkout.ine.com) company. Given the previous info only one person solved it until the challenge's name was change and it was given a new website link. The name was changed to INE (Starter Pass) where it hints to a more particular part of the INE's online presence and the new link .[INE Starter Pass].(https://checkout.ine.com/starter-pass) confirms it.
+The challenge presents a message related to the [INE](https://checkout.ine.com) company. Given the previous info only one person solved it until the challenge's name was change and it was given a new website link. The name was changed to INE (Starter Pass) where it hints to a more particular part of the INE's online presence and the new link [INE Starter Pass](https://checkout.ine.com/starter-pass) confirms it.
 
 In the previous link presented if we inspect the elements we can see a div called "register__analytics". Inside of that div there are more nested divs until we find a paragraph <p> and a <span> and finally inside of that span we see the flag, in a way. 
 
-![ddr](https://github.com/uac-ctf/nahamcon2021/raw/main/INE Starter Pass/INE.png)
+![result](https://github.com/uac-ctf/nahamcon2021/raw/main/INE Starter Pass/INE.png)
 
 We can see that the string ```ZmxhZ3syOWZhMzA1YWFmNWUwMWU5ZWRjZjAxNDJlNGRkY2RiOX0=``` isn't in the normal flag{...} format, but we can also see that the string ends with an "=". Maybe base64? By using an online base64 decoder we confirm our assumption, it is base 64.
 
