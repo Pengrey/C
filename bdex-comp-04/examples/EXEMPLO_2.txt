@@ -1,0 +1,29 @@
+#Obtenha a lista de livros da biblioteca da universidade (livros.csv). Adicione os seguintes
+#livros:
+#- 25, "A bela adormecida", 1812, Irmãos Grimm, ficção
+#- 47, "O patinho feio", 1844, Hans Andersen, ficção
+#- 12, "O leão, a feiticeira e o guarda-roupa", 1950, C.S.Lewis, fantasia
+#- 81, "Orgulho e preconceito", 1813, Jane Austen, romance
+#- 3, "Os lusíadas", 1517, Luís de Camões, poesia
+#Imprima os livros de ficção. Guarde o título dos livros publicados depois de 1800 num
+#ficheiro "pos1800.csv".
+
+# Ler ficheiro csv
+Table biblioteca = read("livros.csv");
+
+# Adicionar livros
+ADD biblioteca LINE (25, "A bela adormecida", 1812, "Irmãos Grimm", "Ficcao");
+ADD biblioteca LINE (47, "O patinho feio", 1844, "Hans Andersen", "Ficcao");
+ADD biblioteca LINE (12, "O leão, a feiticeira e o guarda-roupa", 1950, "C.S.Lewis","Fantasia");
+ADD biblioteca LINE (81, "Orgulho e preconceito", 1813, "Jane Austen", "Romance");
+ADD biblioteca LINE (3, "Os lusíadas", 1517, "Luís de Camões", "Poesia");
+
+# Imprimir os livros de ficção
+Table ficcao=GET biblioteca id titulo publicacao autor genero WHERE  genero == "Ficcao";
+PRINT(ficcao);
+
+# Obter os livros publicados depois de 1800
+Table pos1800=GET ficcao titulo WHERE publicacao > 1800;
+
+# Converter tabela para o ficheiro pos1800.csv
+save("pos1800.csv", pos1800);

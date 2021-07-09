@@ -1,0 +1,24 @@
+# criar template da tabela
+TEMPLATE departamento [nome:String][nmec:Int] ;
+
+
+# criar tabelas usando o template anterior
+Table deti = CREATE departamento;
+Table demat = CREATE departamento; 
+Table defis = CREATE departamento ;
+
+
+# adicionar valores às tabelas
+ADD deti LINE ("jose",89656) ;
+ADD deti LINE ("nuno",84553) ;
+ADD deti LINE <nome, nmec>("rosa",89556) ;
+ADD deti LINE <nome, nmec>("maria",106841) ;
+ADD defis LINE <nome, nmec>("amelia",75113) ;
+ADD defis LINE <nome, nmec>("pedro",97962) ;
+ADD demat LINE ("andre",100000);
+ADD demat LINE ("luis",95683);
+
+for ( line var ) deti { print( var ) ; }
+
+for ( string var ) deti.nome { print( var ) ; }
+

@@ -1,0 +1,49 @@
+# criar template da tabela
+TEMPLATE departamento [nome:String][nmec:Int] 
+
+
+# criar tabelas usando o template anterior
+Table deti = CREATE departamento
+Table demat = CREATE departamento 
+Table defis = CREATE departamento 
+
+# adicionar valores às tabelas
+ADD deti LINE ("jose",89656) 
+ADD deti LINE ("nuno",84553) 
+ADD deti LINE <nome, nmec>("rosa",89556) 
+ADD deti LINE <nome, nmec>("maria",106841) 
+ADD defis LINE <nome, nmec>("amelia",75113) 
+ADD defis LINE <nome, nmec>("pedro",97962) 
+ADD demat LINE ("andre",100000)
+ADD demat LINE ("luis",95683)
+
+DELETE defis LINE WhErE nome=="pedro"
+
+
+#Alterar o nmec da pessoa com nome amelia
+ALTER deti LINE <nmec> (85113) WHERE  nome=="amelia" 
+
+#Buscar nome por departamento
+Int x = INPUT("Nmec aluno a eliminar: ")
+STRING var
+
+#Juntar tabelas e ir buscar nmec
+TABLE temp=deti JOIN defis             #junta apenas os departamentos descritos
+#TABLE temp= JOIN * department         #junta todos os departamentos existentes
+
+STRING var = GET temp nome WHERE nmec==x     #deve retornar andre
+
+DELETE temp LINE WHERE name==var
+PRINT(temp) 
+Int numalunos = GET NUMLINES temp
+FOR(Line var) temp{
+    LINE t= GET temp LINE var WHERE nmec>8888
+    PRINT(t)
+}
+#Aceder a uma coluna de uma tabela
+Col String column = deti.nome
+
+#Criar funções
+TEMPLATE produto [quantidade:int] [preco:FUNC quantidade*0.23 ] [origem: deti.nome WHERE quantidade ==  deti.num ]
+
+

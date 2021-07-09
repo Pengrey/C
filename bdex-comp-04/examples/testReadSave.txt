@@ -1,0 +1,17 @@
+# criar template da tabela
+TEMPLATE departamento [nome:String][nmec:Int] ;
+
+
+# criar tabelas usando o template anterior
+Table deti = CREATE departamento;
+Table demat = CREATE departamento; 
+Table defis = CREATE departamento ;
+
+deti = read("sample1.csv");
+
+print (deti);
+
+ADD demat LINE ("andre",100000);
+ADD demat LINE ("luis",95683);
+
+save("teste1.csv",demat);

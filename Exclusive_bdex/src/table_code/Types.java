@@ -1,0 +1,8 @@
+enum Types {
+    NUMERIC,
+	NUMERIC_INT,
+	NUMERIC_REAL,
+    TEXT,
+    BOOLEAN,
+	UNKNOWN
+}

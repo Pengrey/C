@@ -1,0 +1,85 @@
+# criar template da tabela
+TEMPLATE departamento [nome:String][nmec:Int] ;
+
+
+# criar tabelas usando o template anterior
+Table deti = CREATE departamento;
+Table demat = CREATE departamento; 
+Table defis = CREATE departamento ;
+
+
+# adicionar valores às tabelas
+ADD deti LINE ("jose",89656) ;
+ADD deti LINE ("nuno",84553) ;
+ADD deti LINE <nome, nmec>("rosa",89556) ;
+ADD deti LINE <nome, nmec>("maria",106841) ;
+ADD defis LINE <nome, nmec>("amelia",75113) ;
+ADD defis LINE <nome, nmec>("pedro",97962) ;
+ADD demat LINE ("andre",100000);
+ADD demat LINE ("luis",95683);
+
+
+#Delete Line
+DELETE defis LINE WhErE nome=="pedro";
+print(defis);
+
+#join
+TABLE temp = deti JOIN defis    ;         
+print(temp);
+
+
+
+#get
+Table var = GET temp nome /*nmec*/ WHERE nome == "nuno" ;  
+PRINT(var) ;
+
+
+
+#Predicado
+Expr exp = where nmec < 90000 && nmec > 85000;
+ 
+#Extração de uma tabela através de um predicado
+Table t = deti where exp;
+
+
+#Adicionar coluna
+add t col <apelido:string> ("silva","costa");
+print(t);
+
+
+
+#Valores booleanos e verificação se o valor 89656 existe na tabela
+Bool maria = t where 89656;
+print(maria);
+
+
+#Valor 89646 não existe na tabela
+Bool noOne = t where 89646;
+print(noOne);
+
+
+
+
+#joinOn
+TEMPLATE aluno [pnome:String][apelido:String] ;
+Table turma = CREATE aluno;
+
+
+ADD turma LINE ("jose","Silva") ;
+ADD turma LINE ("nuno","costa") ;
+ADD turma LINE <pnome, apelido>("rosa","pereira") ;
+ADD turma LINE <pnome, apelido>("maria","fernandes") ;
+ADD turma LINE <pnome, apelido>("amelia","lima") ;
+ADD turma LINE <pnome, apelido>("pedro","lopes") ;
+
+
+
+TABLE temp2 = deti JOIN turma  on nome = pnome  ; 
+print();
+print(temp2);
+
+
+
+#Delete table
+DELETE defis;
+print(defis);

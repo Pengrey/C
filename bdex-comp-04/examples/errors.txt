@@ -1,0 +1,16 @@
+TEMPLATE departamento [nome:string][nmec:int];
+TEMPLATE notdepartamento [nome:str][nmec:int]; 
+Table dfis = CREATE notdepartamento;
+Table deti = CREATE departamento;
+ADD deti LINE (“joao”, 45670);
+ADD deti LINE (“sara”, 34567);
+# Tipo de dados errado
+TABLE t1 = GET deti nome WHERE nmec == “sara”;
+# Coluna inexistente na tabela
+TABLE t2 = GET deti nome WHERE idade > 18;
+# Fazer join de templates diferentes mas com colunas em comum
+TABLE t3= deti JOIN dfis;    
+# Fazer join on de uma coluna inexistente
+TABLE t4 = deti JOIN dfis ON curso == “lei”;
+# Ler um ficheiro incorretamente
+Table t5 = read(“something”);

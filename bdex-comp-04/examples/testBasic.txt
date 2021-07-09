@@ -1,0 +1,50 @@
+# criar template departamento
+TEMPLATE departamento [nome:String][nmec:Int] ;
+
+
+# criar tabelas usando o template anterior
+Table deti = CREATE departamento;
+Table demat = CREATE departamento; 
+Table defis = CREATE departamento ;
+
+
+# adicionar valores às tabelas
+ADD deti LINE ("jose",89656) ;
+ADD deti LINE ("nuno",84553) ;
+ADD deti LINE <nome, nmec>("rosa",89556) ;
+ADD deti LINE <nome, nmec>("maria",106841) ;
+ADD defis LINE <nome, nmec>("amelia",75113) ;
+ADD defis LINE <nome, nmec>("pedro",97962) ;
+ADD demat LINE ("andre",100000);
+ADD demat LINE ("luis",95683);
+
+#Operações aritmétricas
+Real y;
+Real x;
+int z;
+
+Table val = deti.nmec + 5;
+print(val);
+
+print(deti);
+
+Table val2 = defis.nmec /  5;
+print(val2);
+
+print(defis);
+
+y = 12 + 15;
+
+x = 12 / 5;
+z = 12 * 13;
+
+print(x);
+print(y);
+print(z);
+
+
+
+#int a = input("Digite um número inteiro");
+#print(a);
+
+

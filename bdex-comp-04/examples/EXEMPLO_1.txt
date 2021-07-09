@@ -1,0 +1,39 @@
+#A universidade tem 3 departamentos: DETI, DEMAT, DEFIS. Cada departamento tem vários
+#alunos, definidos por um nome e Nmec.
+#Pretendemos mudar o Nmec da "Amelia" para "85113".
+#Um funcionário da universidade quer eliminar os dados de um dos alunos de acordo com o
+#seu nmec.
+
+# Criar template da tabela
+TEMPLATE departamento [nome:string][nmec:int];
+
+# Criar tabelas
+TABLE deti = CREATE departamento;
+TABLE demat = CREATE departamento;
+TABLE defis = CREATE departamento;
+
+# Adicionar valores às tabelas
+ADD deti LINE ("jose",89656);
+ADD deti LINE ("nuno",84553);
+ADD deti LINE <nome, nmec> ("rosa",89556);
+ADD deti LINE <nome, nmec> ("maria",106841);
+ADD defis LINE <nome, nmec> ("amelia",75113);
+ADD defis LINE <nome, nmec> ("pedro",97962);
+ADD demat LINE ("andre",100000);
+ADD demat LINE ("luis",95683);
+
+
+# Buscar nome por departamento
+#INT x = INPUT("Nmec aluno a eliminar: ");
+
+# Juntar tabelas e ir buscar nmec
+TABLE temp = deti JOIN defis; #junta deti e defis
+print(temp);
+TABLE temp2 = temp JOIN demat; #junta temp e demat
+print(temp2);
+Table var = GET temp2 nome WHERE nmec == 100000; #deve retornar andre
+print(var);
+# Apagar aluno
+DELETE temp2 LINE WHERE nome == "andre";
+
+print(temp2);
